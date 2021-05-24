@@ -103,7 +103,7 @@ values (14,"Dushov Alexey Vladimirocich",null,null);
 delete from Customer
 where FIO = "Dushov Alexey Vladimirocich";
 
--- 23. Удалить поставку 
+-- 23. Удалить поставку 27 числа
 delete from Delivery
 where DateDelivery = "27.06.2021";
 
