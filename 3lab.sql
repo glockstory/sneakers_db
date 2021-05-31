@@ -124,15 +124,15 @@ primary key(id_shop, id_schedule)
 insert into Sneakers 
 values
 (1,"Gazelle","male",4500,1),
-(2,"Yung 1 ","male",5000,2),
-(3,"Ultraboost uncased","male",12000,3),
-(4,"Campus","male",3000,4),
-(5,"Air Force 1","female",7000,5),
-(6,"Air Force 1 low","female",6500,6),
-(7,"Air Force by Travis Scott","male",30000,7),
-(8,"Yeezy boost by Kanye West","male",22000,8),
-(9,"Hamburg","female",4000,9),
-(10,"Yeezy Boost 350","male",19300,10);
+(2,"Yung 1 ","male",5000,1),
+(3,"Ultraboost uncased","male",12000,1),
+(4,"Campus","male",3000,3),
+(5,"Air Force 1","female",7000,2),
+(6,"Air Force 1 low","female",6500,2),
+(7,"Air Force by Travis Scott","male",30000,2),
+(8,"Yeezy boost by Kanye West","male",22000,3),
+(9,"Hamburg","female",4000,4),
+(10,"Yeezy Boost 350","male",19300,5);
 
 insert into Exemplar
 values
@@ -171,15 +171,15 @@ values
 insert into Brand
 values
 (1,"Adidas"),
-(2,"Adidas"),
-(3,"Adidas"),
-(4,"Adidas"),
-(5,"Nike"),
-(6,"Nike"),
-(7,"Nike"),
-(8,"Adidas"),
-(9,"Adidas"),
-(10,"Adidas");
+(2,"Nike"),
+(3,"Asics"),
+(4,"New Balance"),
+(5,"Puma"),
+(6,"Bershka"),
+(7,"Demix"),
+(8,"Zara"),
+(9,"H&M"),
+(10,"Pull&Bear");
 
 insert into Delivery
 values
