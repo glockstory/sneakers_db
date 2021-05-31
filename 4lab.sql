@@ -1,5 +1,4 @@
 -- --------------------------- 4 лаба --------------------------------------
-
 -- 15 функциональных требований
 
 -- 1. Показать список экземпляров 
@@ -235,62 +234,83 @@ WHERE BrandName = 'Nike';
 SELECT @newbrand, @newid;
 -- JOIN. 20 запросов
 
--- 53. INNER JOIN. Выведем модель и тип кроссовок 11111111111111
+-- 53. INNER JOIN. Выведем модель и тип кроссовок 
 select model, typeSneakers
 from Sneakers as `a`
-join TypeSneakers as `b`
-on a.id = b.id;
+join typesneakerstosneakers as `b`
+on a.id = b.id_sneakers
+join typesneakers t
+on t.id = b.id_typesneakers;
 
--- 54. INNER JOIN. Выведем Сотрудника и график работы 11111111111
-select FIO, TimeStart, TimeEnd
-from Worker
-join `Schedule`
-on Worker.id = `Schedule`.id;
+-- 54. INNER JOIN. Выведем Сотрудника и график работы 
+select FIO, workday, TimeStart, TimeEnd
+from Worker w
+join scheduleworker s
+on w.id = s.id_worker
+join `Schedule` sc
+on sc.id = s.id_schedule;
 
--- 55. INNER JOIN. Выведем клиента и заказы 111111111111111
+-- 55. INNER JOIN. Выведем клиента и заказы MODA
 select FIO, TypePayment, DatePayment
 from Customer
 join `Order`
-on Customer.id = `Order`.id;
+on Customer.id = `Order`.id_customer;
 
 -- 56. Кроссовки и экземпляры - вся информация
 SELECT *
 from Sneakers
 left join Exemplar
-on Sneakers.id = Exemplar.id;
+on Sneakers.id = Exemplar.id_sneakers;
 
 -- 57. Выведем доставку и поставщика
 select *
 from Provider
 left join Delivery
-on Provider.id = Delivery.id;
+on Provider.id = Delivery.id_provider;
 
 -- 58. Выведем модели кроссовок, у которых бренд adidas
 select model, BrandName 
 from Sneakers
 left join Brand
-on sneakers.id = brand.id
+on sneakers.id_brand = brand.id
 where BrandName = "Adidas";
 
 -- 59. Выведем клиентов, которые купили кроссовки nike
 select FIO, BrandName
 from Customer c
-left join Brand b
-on c.id = b.id
+join `Order` ord
+on c.id = ord.id_customer
+join examplarinorder ex
+on ex.id_order = ord.id
+join exemplar
+on exemplar.id = ex.id_examplar
+join sneakers
+on exemplar.id_sneakers = sneakers.id
+join Brand b
+on sneakers.id_brand = b.id
 where BrandName = "Nike";
 
 -- 60. Выведем размеры кроссовок, у которых бренд Nike
 select size, BrandName
 from Exemplar e
+join sneakers s
+on e.id_sneakers = s.id
 join Brand b
-on e.id = b.id
+on s.id_brand = b.id
 where BrandName = "Nike";
 
 -- 61. Выведем информацию о магазине и о экземплярах 
-select * from Shop
-join Exemplar;
+select shopname, count, model, price
+from Shop 
+join delivery 
+on delivery.id_shop = shop.id
+join Exemplar
+on delivery.id = exemplar.id_delivery
+join sneakers
+on sneakers.id = exemplar.id_sneakers;
 
--- 62. Вывести информацию о сотрудниках и магазинеalter
+
+-- 62. Вывести информацию о сотрудниках и магазине
 select * from shop
 join Worker;
 
@@ -298,14 +318,14 @@ join Worker;
 select model, size
 from Sneakers s
 join Exemplar e 
-on s.id = e.id
+on s.id = e.id_sneakers
 where size = 43;
 
 -- 64. СROSS JOIN (63) результат одинаковый
 select model, size
 from Sneakers s
 cross join Exemplar e 
-on s.id = e.id
+on s.id = e.id_sneakers
 where size = 43;
 
 -- 65. Декартово объединение таблиц
@@ -314,28 +334,33 @@ join worker
 join `Schedule`;
 
 -- 66. Одинаковые таблицы появляются 1 раз
-select * from shop
+select * from shop 
 natural join worker;
 
--- 67. Выведем бренд кроссовок с размерами меньше 40
+-- 67. Выведем бренды кроссовок с размерами меньше 40
 select brandname, size
 from brand b
 join exemplar e
-on b.id = e.id
+on b.id = e.id_sneakers
 where size < 40;
 
 -- 68. Выведем всю информацию о графике работы магазина
 select * from shop
-join `Schedule`;
+join scheduleshop
+on scheduleshop.id_shop = shop.id
+join `Schedule`
+on `Schedule`.id = scheduleshop.id_schedule;
 
 -- 69. Декартово объедение
 select *
 from sneakers
-join brand;
+join brand
+on brand.id = sneakers.id_brand;
 
 -- 70. Столбцы используются 1 раз
-select * 
-from shop
+select * from shop
+join scheduleshop
+on scheduleshop.id_shop = shop.id
 natural join `Schedule`;
 
 -- 71. То же самое с другими таблицами
@@ -345,14 +370,17 @@ natural join brand;
 
 -- 72. Тип и кроссовки
 select * 
-from sneakers;
--- natural join typesneakers;
+from sneakers
+join typesneakerstosneakers
+on typesneakerstosneakers.id_sneakers = sneakers.id
+join typesneakers
+on typesneakers.id = typesneakerstosneakers.id_typesneakers;
 
 -- 73. Модель кроссовок у которых бренд не найк
 select model, brandname
 from sneakers s
 join brand b
-on s.id = b.id
+on s.id_brand = b.id
 where brandname not like "Nike";
 
 -- GROUP BY. 10 штук
@@ -447,12 +475,12 @@ select group_concat(size) from exemplar;
 -- 89. Вывести в одну строку каждую модель кроссовок, цена которой будет выше 5000, а также чтобы она не имела бренд адидас
 select group_concat(model) from sneakers
 join brand
-on sneakers.id = brand.id
+on sneakers.id_brand = brand.id
 where price > 5000 and brandname not like "Adidas";
 
 -- 90. Вывести каждого клиента в одну строку, который имеет свой номер телефона
 select group_concat(fio) from customer
-where phonenumber > 0;
+where phonenumber is not null;
 
 -- 91. Сложение строк: полная информация у работников
 select *,
@@ -491,7 +519,7 @@ where phonenumber is null;
 -- 98. Вывести отсортированный по возрастанию список кроссовок по цене, где гендер мужской, а цена не превышает 6000 и бренд адидас
 select model, price from sneakers
 join brand
-on sneakers.id = brand.id
+on sneakers.id_brand = brand.id
 where gender = "male" and price <=6000 and brandname = "Adidas"
 order by price;
 
@@ -506,3 +534,22 @@ select fio, length(fio) from customer;
 -- 2) Для заданного магазина вывести для каждого бренда количество кроссовок в нем (бренд - количество) по убыванию топ 5
 -- 3) Вывести для магазина весь его ассортимент
 -- Поправить join связки 
+
+-- 1) суммарная стоимость заказа
+select FIO
+from customer
+join `order`
+on `order`.id_customer = customer.id
+
+
+
+
+-- 3) Ассортимент магазина
+select shopname, count, model, price
+from Shop 
+join delivery 
+on delivery.id_shop = shop.id
+join Exemplar
+on delivery.id = exemplar.id_delivery
+join sneakers
+on sneakers.id = exemplar.id_sneakers;
