@@ -1,5 +1,5 @@
 use  shopsneakers;
-
+-- тест
 CREATE VIEW abrand
 AS SELECT size, BrandName
 from Exemplar e
@@ -13,7 +13,7 @@ create unique index ind_brandname
 on brand (brandname);
 
 
-
+-- 1 индекс
 select FIO, BrandName
 from Customer c
 join `Order` ord
@@ -30,6 +30,8 @@ where BrandName = "Nike";
 
 create index idx_brandName on Brand(BrandName);
 drop index idx_brandName on Brand;
+
+-- 2 индекс
 select model, size
 from Sneakers s
 join Exemplar e 
@@ -38,6 +40,7 @@ where size = 43;
 
 create index idx_size on exemplar(size);
 
+-- 3 индекс
 select model, size
 from sneakers
 join exemplar 
@@ -46,11 +49,13 @@ where model = "Gazelle";
 
 create index idx_model on sneakers(model);
 
+-- 4 индекс
 select phonenumber
 from customer
 where phonenumber = "89272520629"; 
 create index idx_phonenumber on customer(phonenumber);
 
+-- 5 индекс
 select FIO, datedelivery
 from provider
 join delivery 
@@ -59,7 +64,7 @@ where datedelivery = "2023-02-20";
 create index datedeliveryindx on delivery(datedelivery);
 create index exemplarid on exemplar(
 
--- 1. Процедура 
+-- 1. Процедура - каждая существующая модель кроссовок по цене выше 5000 и НЕ адидас помещаются в строчку
 DELIMITER //
 
 CREATE PROCEDURE modelsSneakers()
@@ -74,7 +79,7 @@ DELIMITER ;
 CALL modelsSneakers();
 
 
--- 2. Процедура
+-- 2. Процедура поиска всех брендов, в названии которых есть символ "а"
 DELIMITER //
 
 CREATE PROCEDURE brandLikeA()
@@ -87,7 +92,7 @@ DELIMITER ;
 
 call brandLikeA();
 
--- 3. Процедура 
+-- 3. Процедура поиска кроссовок по брендам, у которых размер менее 40
 DELIMITER //
 
 CREATE PROCEDURE sizeLess()
@@ -102,3 +107,74 @@ DELIMITER ;
 
 call sizeLess();
 
+-- 3 функции
+-- 1. Функция вычисления кэшбека за товары в определенной ценовой категории и бренда
+DELIMITER $$ 
+CREATE FUNCTION Sale (
+	cashback INT
+)
+RETURNS  INT
+DETERMINISTIC
+BEGIN
+	IF cashback > 1000 AND cashback < 25000 THEN
+		SET cashback = 0.1 * cashback;
+	END IF; 
+RETURN (cashback); 
+END $$; 
+DELIMITER $$ 	
+
+SELECT Sale(price)
+FROM`sneakers`
+join brand on brand.id = sneakers.id_brand
+WHERE BrandName = "Adidas";
+
+-- 2. Функция проверка наличия мобильного телефона у клиентов
+DELIMITER $$ 
+CREATE FUNCTION CountPeopleFo (
+	phonenumber varchar(255)
+)
+RETURNS  INT
+DETERMINISTIC
+BEGIN
+declare count int;
+set count = 0;
+	IF phonenumber IS NULL THEN
+		SET count = count + 1;
+	END IF; 
+RETURN (count); 
+END $$; 
+DELIMITER $$ 	
+
+SELECT CountPeopleFo(phonenumber), FIO
+FROM Customer;
+
+-- 3. Функция
+DELIMITER $$ 
+CREATE FUNCTION PriceAllSneakers (
+	price int
+)
+RETURNS  INT
+DETERMINISTIC
+BEGIN
+	IF price > 0 THEN
+			set price = price;
+	END IF; 
+RETURN (price); 
+END $$; 
+DELIMITER $$ 	
+
+SELECT PriceAllSneakers(price)
+FROM Sneakers;
+-- 3 представления
+
+CREATE VIEW informationAboutShop
+AS SELECT   shopname, count, model, price
+from Shop 
+join delivery 
+on delivery.id_shop = shop.id
+join Exemplar
+on delivery.id = exemplar.id_delivery
+join sneakers
+on sneakers.id = exemplar.id_sneakers;
+
+SELECT * FROM informationAboutShop;
