@@ -539,10 +539,24 @@ select fio, length(fio) from customer;
 select FIO
 from customer
 join `order`
-on `order`.id_customer = customer.id
+on `order`.id_customer = customer.id;
 
+-- 2) Количество кроссовок по брендам (топ 5)
+select sum(exemplar.count) as count_sneakers, brandname 
+from shop
+join delivery on shop.id = delivery.id_shop
+join exemplar on exemplar.id_delivery = delivery.id
+join sneakers on sneakers.id = exemplar.id_sneakers
+join brand on brand.id = sneakers.id_brand
+group by brandname
+order by sum(exemplar.count) desc
+limit 5;
 
-
+-- проверка правильности предыдущего запроса
+select brandname, exemplar.count, model
+from exemplar
+join sneakers on sneakers.id = exemplar.id_sneakers
+join brand on brand.id = sneakers.id_brand;
 
 -- 3) Ассортимент магазина
 select shopname, count, model, price
