@@ -536,10 +536,16 @@ select fio, length(fio) from customer;
 -- Поправить join связки 
 
 -- 1) суммарная стоимость заказа
-select FIO
+select FIO, sum(price*eio.count) as cost_order ,datepayment
 from customer
 join `order`
-on `order`.id_customer = customer.id;
+on `order`.id_customer = customer.id
+join examplarinorder eio
+on eio.id_order = `order`.id
+join exemplar on eio.id_examplar = exemplar.id
+join sneakers on sneakers.id = exemplar.id_sneakers
+group by FIO
+order by sum(price*eio.count) desc;
 
 -- 2) Количество кроссовок по брендам (топ 5)
 select sum(exemplar.count) as count_sneakers, brandname 
