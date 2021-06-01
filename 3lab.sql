@@ -58,7 +58,7 @@ CREATE TABLE `Provider` (
 CREATE TABLE `Order` (
 	`id` INT NOT NULL AUTO_INCREMENT,
 	`TypePayment` VARCHAR(255) NOT NULL,
-	`DatePayment` DATETIME NOT NULL,
+	`DatePayment` DATE NOT NULL,
 	`id_customer` INT NOT NULL,
 	`id_worker` INT NOT NULL,
 	PRIMARY KEY (`id`)
@@ -194,16 +194,16 @@ values
 
 insert into `Order`
 values 
-(1,"VISA Card","24.02.2021",1,1),
-(2,"VISA Card","24.02.2021",1,1),
-(3,"VISA Card","25.02.2021",2,1),
-(4,"VISA Card","25.02.2021",3,1),
-(5,"VISA Card","25.02.2021",3,1),
-(6,"VISA Card","25.02.2021",4,1),
-(7,"VISA Card","26.02.2021",5,2),
-(8,"VISA Card","26.02.2021",6,2),
-(9,"VISA Card","26.02.2021",7,2),
-(10,"VISA Card","26.02.2021",8,1);
+(1,"VISA Card","2021-02-24",1,1), 
+(2,"VISA Card","2021-02-24",1,1),
+(3,"VISA Card","2021-02-25",2,1),
+(4,"VISA Card","2021-02-25",3,1),
+(5,"VISA Card","2021-02-25",3,1),
+(6,"VISA Card","2021-02-25",4,1),
+(7,"VISA Card","2021-02-26",5,2),
+(8,"VISA Card","2021-02-26",6,2),
+(9,"VISA Card","2021-02-26",7,2),
+(10,"VISA Card","2021-02-26",8,1);
 
 insert into Sale
 values
@@ -216,7 +216,7 @@ values
 
 insert into ExamplarInOrder
 values
-(1,1,1),
+(1,1,2),
 (2,2,1),
 (4,3,1),
 (3,4,1),
