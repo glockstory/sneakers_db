@@ -123,47 +123,49 @@ RETURN (cashback);
 END $$; 
 DELIMITER $$ 	
 
-SELECT Sale(price)
+SELECT Sale (price)
 FROM`sneakers`
 join brand on brand.id = sneakers.id_brand
 WHERE BrandName = "Adidas";
 
 -- 2. Функция проверка наличия мобильного телефона у клиентов
 DELIMITER $$ 
-CREATE FUNCTION CountPeopleFo (
+CREATE FUNCTION CountPeopleFor (
 	phonenumber varchar(255)
 )
 RETURNS  INT
 DETERMINISTIC
 BEGIN
-declare count int;
-set count = 0;
+declare HavePhone boolean;
+set HavePhone = true;
 	IF phonenumber IS NULL THEN
-		SET count = count + 1;
+		 SET HavePhone = false;
+			else
+            set HavePhone = true;
 	END IF; 
-RETURN (count); 
+RETURN (HavePhone); 
 END $$; 
 DELIMITER $$ 	
 
-SELECT CountPeopleFo(phonenumber), FIO
+SELECT CountPeopleFor(phonenumber) as HavePhoneNumber, FIO
 FROM Customer;
 
--- 3. Функция
+-- 3. Функция установки скидки на товары дороже 20000 в размере 10%
 DELIMITER $$ 
-CREATE FUNCTION PriceAllSneakers (
+CREATE FUNCTION SetPriceOnSneakers (
 	price int
 )
 RETURNS  INT
 DETERMINISTIC
 BEGIN
-	IF price > 0 THEN
-			set price = price;
+	IF price > 20000 THEN
+			set price = price * 0.9;
 	END IF; 
 RETURN (price); 
 END $$; 
 DELIMITER $$ 	
 
-SELECT PriceAllSneakers(price)
+SELECT SetPriceOnSneakers(price), model
 FROM Sneakers;
 -- 3 представления
 
