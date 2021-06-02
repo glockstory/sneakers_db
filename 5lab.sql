@@ -169,6 +169,7 @@ SELECT SetPriceOnSneakers(price), model
 FROM Sneakers;
 -- 3 представления
 
+-- 1. Вывести ассортимент магазина
 CREATE VIEW informationAboutShop
 AS SELECT   shopname, count, model, price
 from Shop 
@@ -180,3 +181,25 @@ join sneakers
 on sneakers.id = exemplar.id_sneakers;
 
 SELECT * FROM informationAboutShop;
+
+-- 2. График работы сотрудников магазина
+CREATE VIEW ScheduleWorkers
+AS SELECT FIO, workday, TimeStart, TimeEnd
+from Worker w
+join scheduleworker s
+on w.id = s.id_worker
+join `Schedule` sc
+on sc.id = s.id_schedule;
+
+SELECT * FROM ScheduleWorkers;
+
+-- 3. Модель кроссовок и их тип
+CREATE VIEW ModelAndType
+as select model, typeSneakers
+from Sneakers as `a`
+join typesneakerstosneakers as `b`
+on a.id = b.id_sneakers
+join typesneakers t
+on t.id = b.id_typesneakers;
+
+SELECT * FROM ModelAndType;
