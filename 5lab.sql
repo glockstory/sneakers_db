@@ -50,10 +50,13 @@ where model = "Gazelle";
 create index idx_model on sneakers(model);
 
 -- 4 индекс
-select phonenumber
-from customer
-where phonenumber = "89272520629"; 
-create index idx_phonenumber on customer(phonenumber);
+select brandname, exemplar.count, model
+from exemplar
+join sneakers on sneakers.id = exemplar.id_sneakers
+join brand on brand.id = sneakers.id_brand
+where exemplar.count = 2;
+
+CREATE INDEX idx_exCount on exemplar(count);
 
 -- 5 индекс
 select FIO, datedelivery
