@@ -41,12 +41,12 @@ namespace DB_lab7
             this.deleteButton = new System.Windows.Forms.Button();
             this.updateButton = new System.Windows.Forms.Button();
             this.insertButton = new System.Windows.Forms.Button();
-            this.SneakersDataGrid = new System.Windows.Forms.DataGridView();
+            this.ExemplarDataGrid = new System.Windows.Forms.DataGridView();
             this.text_idSale = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.text_idDelivery = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.SneakersDataGrid)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ExemplarDataGrid)).BeginInit();
             this.SuspendLayout();
             // 
             // text_idSneakers
@@ -153,16 +153,16 @@ namespace DB_lab7
             this.insertButton.UseVisualStyleBackColor = true;
             this.insertButton.Click += new System.EventHandler(this.insertButton_Click);
             // 
-            // SneakersDataGrid
+            // ExemplarDataGrid
             // 
-            this.SneakersDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.SneakersDataGrid.Location = new System.Drawing.Point(22, 193);
-            this.SneakersDataGrid.Name = "SneakersDataGrid";
-            this.SneakersDataGrid.RowHeadersWidth = 47;
-            this.SneakersDataGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.SneakersDataGrid.Size = new System.Drawing.Size(724, 207);
-            this.SneakersDataGrid.TabIndex = 13;
-            this.SneakersDataGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.SneakersDataGrid_CellContentClick);
+            this.ExemplarDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.ExemplarDataGrid.Location = new System.Drawing.Point(22, 193);
+            this.ExemplarDataGrid.Name = "ExemplarDataGrid";
+            this.ExemplarDataGrid.RowHeadersWidth = 47;
+            this.ExemplarDataGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.ExemplarDataGrid.Size = new System.Drawing.Size(724, 207);
+            this.ExemplarDataGrid.TabIndex = 13;
+            this.ExemplarDataGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.SneakersDataGrid_CellContentClick);
             // 
             // text_idSale
             // 
@@ -217,11 +217,11 @@ namespace DB_lab7
             this.Controls.Add(this.deleteButton);
             this.Controls.Add(this.updateButton);
             this.Controls.Add(this.insertButton);
-            this.Controls.Add(this.SneakersDataGrid);
+            this.Controls.Add(this.ExemplarDataGrid);
             this.Name = "Exemplar";
             this.Text = "Exemplar";
             this.Load += new System.EventHandler(this.Exemplar_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.SneakersDataGrid)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ExemplarDataGrid)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -241,7 +241,7 @@ namespace DB_lab7
         private System.Windows.Forms.Button deleteButton;
         private System.Windows.Forms.Button updateButton;
         private System.Windows.Forms.Button insertButton;
-        private System.Windows.Forms.DataGridView SneakersDataGrid;
+        private System.Windows.Forms.DataGridView ExemplarDataGrid;
         private System.Windows.Forms.TextBox text_idSale;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox text_idDelivery;
