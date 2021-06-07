@@ -82,6 +82,7 @@ namespace DB_lab7
 
         private void ResetObjects()
         {
+            BrandID = 0;
             text_idBrand.Clear();
             text_price.Clear();
             text_gender.Clear();
@@ -128,6 +129,14 @@ namespace DB_lab7
 
         private void deleteButton_Click(object sender, EventArgs e)
         {
+            try
+            {
+
+            }
+            catch (Exception exception)
+            {
+               
+            }
             if (BrandID > 0)
             {
                 MySqlCommand cmd = new MySqlCommand("DELETE FROM sneakers WHERE id = @ID", con);
