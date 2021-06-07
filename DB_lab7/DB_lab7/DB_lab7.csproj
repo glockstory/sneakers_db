@@ -50,6 +50,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ChooseForms.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChooseForms.Designer.cs">
+      <DependentUpon>ChooseForms.cs</DependentUpon>
+    </Compile>
     <Compile Include="Sneakers.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -58,6 +64,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="ChooseForms.resx">
+      <DependentUpon>ChooseForms.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Sneakers.resx">
       <DependentUpon>Sneakers.cs</DependentUpon>
     </EmbeddedResource>

@@ -16,7 +16,7 @@ namespace DB_lab7
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Sneakers());
+            Application.Run(new ChooseForms());
         }
     }
 }

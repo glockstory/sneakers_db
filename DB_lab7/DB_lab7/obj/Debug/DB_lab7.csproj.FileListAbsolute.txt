@@ -24,3 +24,4 @@ C:\Users\danil\Documents\GitHub\sneakers_db\DB_lab7\DB_lab7\bin\Debug\System.Run
 C:\Users\danil\Documents\GitHub\sneakers_db\DB_lab7\DB_lab7\bin\Debug\MySql.Data.xml
 C:\Users\danil\Documents\GitHub\sneakers_db\DB_lab7\DB_lab7\obj\Debug\DB_lab7.exe.config
 C:\Users\danil\Documents\GitHub\sneakers_db\DB_lab7\DB_lab7\obj\Debug\DB_lab7.csproj.CopyComplete
+C:\Users\danil\Documents\GitHub\sneakers_db\DB_lab7\DB_lab7\obj\Debug\DB_lab7.ChooseForms.resources

@@ -116,14 +116,14 @@ namespace DB_lab7
                 cmd.ExecuteReader();
                 con.Close();
 
-                MessageBox.Show("Кроссовки успешно добавлены!", "Сохранено", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Кроссовки успешно изменены!", "Изменение", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 GetSneakersRecord();
                 ResetObjects();
             }
             else
             {
-                MessageBox.Show("Пожалуйста выберите кроссовки для обновления!", "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Error); 
+                MessageBox.Show("Пожалуйста выберите кроссовки для обновления!", "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -131,31 +131,31 @@ namespace DB_lab7
         {
             try
             {
+                if (BrandID > 0)
+                {
+                    MySqlCommand cmd = new MySqlCommand("DELETE FROM sneakers WHERE id = @ID", con);
+                    cmd.CommandType = CommandType.Text;
+                    cmd.Parameters.AddWithValue("@ID", this.BrandID);
 
+                    con.Open();
+                    cmd.ExecuteReader();
+                    con.Close();
+
+                    MessageBox.Show("Кроссовки успешно удалены!", "Удалено", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    GetSneakersRecord();
+                    ResetObjects();
+                }
+                else
+                {
+                    MessageBox.Show("Пожалуйста выберите кроссовки для удаления!", "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             catch (Exception exception)
             {
-               
+                MessageBox.Show(exception.Message);
             }
-            if (BrandID > 0)
-            {
-                MySqlCommand cmd = new MySqlCommand("DELETE FROM sneakers WHERE id = @ID", con);
-                cmd.CommandType = CommandType.Text;
-                cmd.Parameters.AddWithValue("@ID", this.BrandID);
 
-                con.Open();
-                cmd.ExecuteReader();
-                con.Close();
-
-                MessageBox.Show("Кроссовки успешно удалены!", "Удалено", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                GetSneakersRecord();
-                ResetObjects();
-            }
-            else
-            {
-                MessageBox.Show("Пожалуйста выберите кроссовки для удаления!", "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
         }
     }
 }
