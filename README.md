@@ -16,5 +16,6 @@
 [**Реализация SQL-запросов базы данных**](https://github.com/glockstory/sneakers_db/blob/master/4lab.sql)
 ## 5 lab
 [**Индексы, хранимые процедуры, представления**](https://github.com/glockstory/sneakers_db/blob/master/5lab.sql)
-## 6 lab
-**Взаимодействие с БД из приложения**
+## 6-7 lab
+[**Взаимодействие с БД из приложения**](https://github.com/glockstory/sneakers_db/tree/master/DB_lab7)
+
