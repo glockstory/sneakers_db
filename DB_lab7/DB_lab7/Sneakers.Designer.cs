@@ -51,8 +51,10 @@ namespace DB_lab7
             this.SneakersDataGrid.Location = new System.Drawing.Point(12, 231);
             this.SneakersDataGrid.Name = "SneakersDataGrid";
             this.SneakersDataGrid.RowHeadersWidth = 47;
+            this.SneakersDataGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.SneakersDataGrid.Size = new System.Drawing.Size(621, 207);
             this.SneakersDataGrid.TabIndex = 0;
+            this.SneakersDataGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.SneakersDataGrid_CellContentClick);
             // 
             // insertButton
             // 
@@ -72,6 +74,7 @@ namespace DB_lab7
             this.updateButton.TabIndex = 2;
             this.updateButton.Text = "UPDATE";
             this.updateButton.UseVisualStyleBackColor = true;
+            this.updateButton.Click += new System.EventHandler(this.updateButton_Click);
             // 
             // button3
             // 
@@ -91,6 +94,7 @@ namespace DB_lab7
             this.deleteButton.TabIndex = 3;
             this.deleteButton.Text = "DELETE";
             this.deleteButton.UseVisualStyleBackColor = true;
+            this.deleteButton.Click += new System.EventHandler(this.deleteButton_Click);
             // 
             // label1
             // 
