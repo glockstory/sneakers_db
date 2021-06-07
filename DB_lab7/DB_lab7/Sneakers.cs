@@ -24,7 +24,7 @@ namespace DB_lab7
             GetSneakersRecord();
         }
 
-        public int BrandID { get; set; }
+        public int SneakersID { get; set; }
 
         MySqlConnection con = new MySqlConnection("server=localhost;user id=root;persistsecurityinfo=True;database=shopsneakers;password=102505");
         private void GetSneakersRecord()
@@ -82,7 +82,7 @@ namespace DB_lab7
 
         private void ResetObjects()
         {
-            BrandID = 0;
+            SneakersID = 0;
             text_idBrand.Clear();
             text_price.Clear();
             text_gender.Clear();
@@ -92,7 +92,7 @@ namespace DB_lab7
 
         private void SneakersDataGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            BrandID = Convert.ToInt32(SneakersDataGrid.SelectedRows[0].Cells[0].Value);
+            SneakersID = Convert.ToInt32(SneakersDataGrid.SelectedRows[0].Cells[0].Value);
             text_model.Text = SneakersDataGrid.SelectedRows[0].Cells[1].Value.ToString();
             text_gender.Text = SneakersDataGrid.SelectedRows[0].Cells[2].Value.ToString();
             text_price.Text = SneakersDataGrid.SelectedRows[0].Cells[3].Value.ToString();
@@ -101,7 +101,7 @@ namespace DB_lab7
 
         private void updateButton_Click(object sender, EventArgs e)
         {
-            if (BrandID > 0)
+            if (SneakersID > 0)
             {
                 MySqlCommand cmd = new MySqlCommand("UPDATE sneakers SET model = @model, gender = @gender," +
                                                     "price = @price, id_brand = @id_brand WHERE id = @ID", con);
@@ -110,7 +110,7 @@ namespace DB_lab7
                 cmd.Parameters.AddWithValue("@gender", text_gender.Text);
                 cmd.Parameters.AddWithValue("@price", text_price.Text);
                 cmd.Parameters.AddWithValue("@id_brand", text_idBrand.Text);
-                cmd.Parameters.AddWithValue("@ID", this.BrandID);
+                cmd.Parameters.AddWithValue("@ID", this.SneakersID);
 
                 con.Open();
                 cmd.ExecuteReader();
@@ -131,11 +131,11 @@ namespace DB_lab7
         {
             try
             {
-                if (BrandID > 0)
+                if (SneakersID > 0)
                 {
                     MySqlCommand cmd = new MySqlCommand("DELETE FROM sneakers WHERE id = @ID", con);
                     cmd.CommandType = CommandType.Text;
-                    cmd.Parameters.AddWithValue("@ID", this.BrandID);
+                    cmd.Parameters.AddWithValue("@ID", this.SneakersID);
 
                     con.Open();
                     cmd.ExecuteReader();

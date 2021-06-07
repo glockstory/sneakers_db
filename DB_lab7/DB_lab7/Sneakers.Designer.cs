@@ -48,7 +48,7 @@ namespace DB_lab7
             // SneakersDataGrid
             // 
             this.SneakersDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.SneakersDataGrid.Location = new System.Drawing.Point(12, 231);
+            this.SneakersDataGrid.Location = new System.Drawing.Point(9, 111);
             this.SneakersDataGrid.Name = "SneakersDataGrid";
             this.SneakersDataGrid.RowHeadersWidth = 47;
             this.SneakersDataGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -58,7 +58,7 @@ namespace DB_lab7
             // 
             // insertButton
             // 
-            this.insertButton.Location = new System.Drawing.Point(12, 179);
+            this.insertButton.Location = new System.Drawing.Point(9, 59);
             this.insertButton.Name = "insertButton";
             this.insertButton.Size = new System.Drawing.Size(103, 37);
             this.insertButton.TabIndex = 1;
@@ -68,7 +68,7 @@ namespace DB_lab7
             // 
             // updateButton
             // 
-            this.updateButton.Location = new System.Drawing.Point(171, 179);
+            this.updateButton.Location = new System.Drawing.Point(168, 59);
             this.updateButton.Name = "updateButton";
             this.updateButton.Size = new System.Drawing.Size(103, 37);
             this.updateButton.TabIndex = 2;
@@ -78,7 +78,7 @@ namespace DB_lab7
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(530, 179);
+            this.button3.Location = new System.Drawing.Point(527, 59);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(103, 37);
             this.button3.TabIndex = 4;
@@ -88,7 +88,7 @@ namespace DB_lab7
             // 
             // deleteButton
             // 
-            this.deleteButton.Location = new System.Drawing.Point(346, 179);
+            this.deleteButton.Location = new System.Drawing.Point(343, 59);
             this.deleteButton.Name = "deleteButton";
             this.deleteButton.Size = new System.Drawing.Size(103, 37);
             this.deleteButton.TabIndex = 3;
@@ -99,7 +99,7 @@ namespace DB_lab7
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(22, 23);
+            this.label1.Location = new System.Drawing.Point(4, 23);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(35, 13);
             this.label1.TabIndex = 5;
@@ -107,14 +107,14 @@ namespace DB_lab7
             // 
             // text_model
             // 
-            this.text_model.Location = new System.Drawing.Point(76, 20);
+            this.text_model.Location = new System.Drawing.Point(58, 20);
             this.text_model.Name = "text_model";
             this.text_model.Size = new System.Drawing.Size(100, 20);
             this.text_model.TabIndex = 6;
             // 
             // text_gender
             // 
-            this.text_gender.Location = new System.Drawing.Point(76, 46);
+            this.text_gender.Location = new System.Drawing.Point(226, 20);
             this.text_gender.Name = "text_gender";
             this.text_gender.Size = new System.Drawing.Size(100, 20);
             this.text_gender.TabIndex = 8;
@@ -122,7 +122,7 @@ namespace DB_lab7
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(22, 49);
+            this.label2.Location = new System.Drawing.Point(172, 23);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(40, 13);
             this.label2.TabIndex = 7;
@@ -130,7 +130,7 @@ namespace DB_lab7
             // 
             // text_price
             // 
-            this.text_price.Location = new System.Drawing.Point(76, 72);
+            this.text_price.Location = new System.Drawing.Point(368, 20);
             this.text_price.Name = "text_price";
             this.text_price.Size = new System.Drawing.Size(100, 20);
             this.text_price.TabIndex = 10;
@@ -138,7 +138,7 @@ namespace DB_lab7
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(22, 75);
+            this.label3.Location = new System.Drawing.Point(332, 23);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(30, 13);
             this.label3.TabIndex = 9;
@@ -146,7 +146,7 @@ namespace DB_lab7
             // 
             // text_idBrand
             // 
-            this.text_idBrand.Location = new System.Drawing.Point(76, 98);
+            this.text_idBrand.Location = new System.Drawing.Point(530, 20);
             this.text_idBrand.Name = "text_idBrand";
             this.text_idBrand.Size = new System.Drawing.Size(100, 20);
             this.text_idBrand.TabIndex = 12;
@@ -154,7 +154,7 @@ namespace DB_lab7
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(22, 101);
+            this.label4.Location = new System.Drawing.Point(476, 23);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(48, 13);
             this.label4.TabIndex = 11;
@@ -164,7 +164,7 @@ namespace DB_lab7
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(647, 450);
+            this.ClientSize = new System.Drawing.Size(647, 332);
             this.Controls.Add(this.text_idBrand);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.text_price);
