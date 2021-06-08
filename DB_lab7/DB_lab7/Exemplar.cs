@@ -128,6 +128,7 @@ namespace DB_lab7
             catch (Exception exception)
             {
                 MessageBox.Show(exception.Message);
+                con.Close();
             }
         }
 
