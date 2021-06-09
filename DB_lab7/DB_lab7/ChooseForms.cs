@@ -24,18 +24,16 @@ namespace DB_lab7
             toSn.Show();
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            Form toBr = new Brand();
-            toBr.Owner = this;
-            toBr.Show();
-        }
-
         private void button3_Click(object sender, EventArgs e)
         {
             Form toEx = new Exemplar();
             toEx.Owner = this;
             toEx.Show();
+        }
+
+        private void ChooseForms_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

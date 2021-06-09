@@ -29,38 +29,44 @@ namespace DB_lab7
         MySqlConnection con = new MySqlConnection("server=localhost;user id=root;persistsecurityinfo=True;database=shopsneakers;password=102505");
         private void GetSneakersRecord()
         {
-            MySqlCommand cmd = new MySqlCommand("SELECT * FROM sneakers", con);
+            MySqlCommand cmd = new MySqlCommand("SELECT sneakers.id, model, gender, price, brandname FROM sneakers join brand on brand.id = sneakers.id_brand", con);
             DataTable dt = new DataTable();
 
             con.Open();
-
             MySqlDataReader sdr = cmd.ExecuteReader();
             dt.Load(sdr);
             con.Close();
 
             SneakersDataGrid.DataSource = dt;
-
         }
 
         private void insertButton_Click(object sender, EventArgs e)
         {
-            if (IsValid())
+            try
             {
-                MySqlCommand cmd = new MySqlCommand("INSERT INTO sneakers (model,gender,price,id_brand) VALUES (@model,@gender,@price,@id_brand)", con);
-                cmd.CommandType = CommandType.Text;
-                cmd.Parameters.AddWithValue("@model", text_model.Text);
-                cmd.Parameters.AddWithValue("@gender", text_gender.Text);
-                cmd.Parameters.AddWithValue("@price", text_price.Text);
-                cmd.Parameters.AddWithValue("@id_brand", text_idBrand.Text);
+                if (IsValid())
+                {
+                    MySqlCommand cmd = new MySqlCommand("INSERT INTO sneakers (model,gender,price,id_brand) VALUES (@model,@gender,@price,@id_brand)", con);
+                    cmd.CommandType = CommandType.Text;
+                    cmd.Parameters.AddWithValue("@model", text_model.Text);
+                    cmd.Parameters.AddWithValue("@gender", text_gender.Text);
+                    cmd.Parameters.AddWithValue("@price", text_price.Text);
+                    cmd.Parameters.AddWithValue("@id_brand", text_idBrand.Text);
 
-                con.Open();
-                cmd.ExecuteReader();
+                    con.Open();
+                    cmd.ExecuteReader();
+                    con.Close();
+
+                    MessageBox.Show("Кроссовки успешно добавлены!", "Сохранено", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    GetSneakersRecord();
+                    ResetObjects();
+                }
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message);
                 con.Close();
-
-                MessageBox.Show("Кроссовки успешно добавлены!", "Сохранено", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                GetSneakersRecord();
-                ResetObjects();
             }
         }
 
@@ -71,7 +77,6 @@ namespace DB_lab7
                 MessageBox.Show("Модель не введена", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
-
             return true;
         }
 
@@ -101,29 +106,37 @@ namespace DB_lab7
 
         private void updateButton_Click(object sender, EventArgs e)
         {
-            if (SneakersID > 0)
+            try
             {
-                MySqlCommand cmd = new MySqlCommand("UPDATE sneakers SET model = @model, gender = @gender," +
-                                                    "price = @price, id_brand = @id_brand WHERE id = @ID", con);
-                cmd.CommandType = CommandType.Text;
-                cmd.Parameters.AddWithValue("@model", text_model.Text);
-                cmd.Parameters.AddWithValue("@gender", text_gender.Text);
-                cmd.Parameters.AddWithValue("@price", text_price.Text);
-                cmd.Parameters.AddWithValue("@id_brand", text_idBrand.Text);
-                cmd.Parameters.AddWithValue("@ID", this.SneakersID);
+                if (SneakersID > 0)
+                {
+                    MySqlCommand cmd = new MySqlCommand("UPDATE sneakers SET model = @model, gender = @gender," +
+                                                        "price = @price, id_brand = @id_brand WHERE id = @ID", con);
+                    cmd.CommandType = CommandType.Text;
+                    cmd.Parameters.AddWithValue("@model", text_model.Text);
+                    cmd.Parameters.AddWithValue("@gender", text_gender.Text);
+                    cmd.Parameters.AddWithValue("@price", text_price.Text);
+                    cmd.Parameters.AddWithValue("@id_brand", text_idBrand.Text);
+                    cmd.Parameters.AddWithValue("@ID", this.SneakersID);
 
-                con.Open();
-                cmd.ExecuteReader();
-                con.Close();
+                    con.Open();
+                    cmd.ExecuteReader();
+                    con.Close();
 
-                MessageBox.Show("Кроссовки успешно изменены!", "Изменение", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Кроссовки успешно изменены!", "Изменение", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                GetSneakersRecord();
-                ResetObjects();
+                    GetSneakersRecord();
+                    ResetObjects();
+                }
+                else
+                {
+                    MessageBox.Show("Пожалуйста выберите кроссовки для обновления!", "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
-            else
+            catch (Exception exception)
             {
-                MessageBox.Show("Пожалуйста выберите кроссовки для обновления!", "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(exception.Message);
+                con.Close();
             }
         }
 
@@ -156,7 +169,6 @@ namespace DB_lab7
                 MessageBox.Show(exception.Message);
                 con.Close();
             }
-
         }
     }
 }

@@ -23,27 +23,36 @@ namespace DB_lab7
         MySqlConnection con = new MySqlConnection("server=localhost;user id=root;persistsecurityinfo=True;database=shopsneakers;password=102505");
         private void insertButton_Click(object sender, EventArgs e)
         {
-            if (IsValid())
+            try
             {
-                MySqlCommand cmd = new MySqlCommand("INSERT INTO exemplar (count,size,color,id_sneakers,id_delivery,id_sale)" +
-                                                    " VALUES (@count,@size,@color,@id_sneakers,@id_delivery,@id_sale)", con);
-                cmd.CommandType = CommandType.Text;
-                cmd.Parameters.AddWithValue("@count", text_count.Text);
-                cmd.Parameters.AddWithValue("@color", text_color.Text);
-                cmd.Parameters.AddWithValue("@size", text_size.Text);
-                cmd.Parameters.AddWithValue("@id_delivery", text_idDelivery.Text);
-                cmd.Parameters.AddWithValue("@id_sale", text_idSale.Text);
-                cmd.Parameters.AddWithValue("@id_sneakers", text_idSneakers.Text);
+                if (IsValid())
+                {
+                    MySqlCommand cmd = new MySqlCommand("INSERT INTO exemplar (count,size,color,id_sneakers,id_delivery,id_sale)" +
+                                                        " VALUES (@count,@size,@color,@id_sneakers,@id_delivery,@id_sale)", con);
+                    cmd.CommandType = CommandType.Text;
+                    cmd.Parameters.AddWithValue("@count", text_count.Text);
+                    cmd.Parameters.AddWithValue("@color", text_color.Text);
+                    cmd.Parameters.AddWithValue("@size", text_size.Text);
+                    cmd.Parameters.AddWithValue("@id_delivery", text_idDelivery.Text);
+                    cmd.Parameters.AddWithValue("@id_sale", text_idSale.Text);
+                    cmd.Parameters.AddWithValue("@id_sneakers", text_idSneakers.Text);
 
-                con.Open();
-                cmd.ExecuteReader();
-                con.Close();
+                    con.Open();
+                    cmd.ExecuteReader();
+                    con.Close();
 
-                MessageBox.Show("Экземпляр успешно добавлен!", "Сохранено", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Экземпляр успешно добавлен!", "Сохранено", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                GetSneakersRecord();
-                ResetObjects();
+                    GetSneakersRecord();
+                    ResetObjects();
+                }
             }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message);
+                con.Close();
+            }
+
         }
 
         private void ResetObjects()
@@ -71,33 +80,41 @@ namespace DB_lab7
 
         private void updateButton_Click(object sender, EventArgs e)
         {
-            if (ExemplarID > 0)
+            try
             {
-                MySqlCommand cmd = new MySqlCommand("UPDATE exemplar SET count = @count," +
-                                                    "size = @size, color = @color," +
-                                                    "id_sneakers = @id_sneakers," +
-                                                    "id_delivery = @id_delivery,id_sale = @id_sale WHERE id = @ID", con);
-                cmd.CommandType = CommandType.Text;
-                cmd.Parameters.AddWithValue("@count", text_count.Text);
-                cmd.Parameters.AddWithValue("@color", text_color.Text);
-                cmd.Parameters.AddWithValue("@size", text_size.Text);
-                cmd.Parameters.AddWithValue("@id_delivery", text_idDelivery.Text);
-                cmd.Parameters.AddWithValue("@id_sale", text_idSale.Text);
-                cmd.Parameters.AddWithValue("@id_sneakers", text_idSneakers.Text);
-                cmd.Parameters.AddWithValue("@ID", this.ExemplarID);
+                if (ExemplarID > 0)
+                {
+                    MySqlCommand cmd = new MySqlCommand("UPDATE exemplar SET count = @count," +
+                                                        "size = @size, color = @color," +
+                                                        "id_sneakers = @id_sneakers," +
+                                                        "id_delivery = @id_delivery,id_sale = @id_sale WHERE id = @ID", con);
+                    cmd.CommandType = CommandType.Text;
+                    cmd.Parameters.AddWithValue("@count", text_count.Text);
+                    cmd.Parameters.AddWithValue("@color", text_color.Text);
+                    cmd.Parameters.AddWithValue("@size", text_size.Text);
+                    cmd.Parameters.AddWithValue("@id_delivery", text_idDelivery.Text);
+                    cmd.Parameters.AddWithValue("@id_sale", text_idSale.Text);
+                    cmd.Parameters.AddWithValue("@id_sneakers", text_idSneakers.Text);
+                    cmd.Parameters.AddWithValue("@ID", this.ExemplarID);
 
-                con.Open();
-                cmd.ExecuteReader();
-                con.Close();
+                    con.Open();
+                    cmd.ExecuteReader();
+                    con.Close();
 
-                MessageBox.Show("Экземпляр успешно изменен!", "Сохранено", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Экземпляр успешно изменен!", "Сохранено", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                GetSneakersRecord();
-                ResetObjects();
+                    GetSneakersRecord();
+                    ResetObjects();
+                }
+                else
+                {
+                    MessageBox.Show("Пожалуйста выберите экземпляр для обновления!", "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
-            else
+            catch (Exception exception)
             {
-                MessageBox.Show("Пожалуйста выберите экземпляр для обновления!", "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(exception.Message);
+                con.Close();
             }
         }
 
@@ -155,7 +172,9 @@ namespace DB_lab7
 
         private void GetSneakersRecord()
         {
-            MySqlCommand cmd = new MySqlCommand("SELECT * FROM exemplar", con);
+            MySqlCommand cmd = new MySqlCommand("SELECT exemplar.id, count, exemplar.size, color, model, DateDelivery, salename FROM exemplar " +
+                                                "join sneakers on sneakers.id = exemplar.id_sneakers join delivery on delivery.id = exemplar.id_delivery " +
+                                                "join sale on sale.id = exemplar.id_sale", con);
             DataTable dt = new DataTable();
 
             con.Open();
