@@ -26,3 +26,6 @@ C:\Users\danil\Documents\GitHub\sneakers_db\DB_lab7\DB_lab7\obj\Debug\DB_lab7.ex
 C:\Users\danil\Documents\GitHub\sneakers_db\DB_lab7\DB_lab7\obj\Debug\DB_lab7.csproj.CopyComplete
 C:\Users\danil\Documents\GitHub\sneakers_db\DB_lab7\DB_lab7\obj\Debug\DB_lab7.ChooseForms.resources
 C:\Users\danil\Documents\GitHub\sneakers_db\DB_lab7\DB_lab7\obj\Debug\DB_lab7.Exemplar.resources
+C:\Users\danil\Documents\GitHub\sneakers_db\DB_lab7\DB_lab7\obj\Debug\DB_lab7.Query1.resources
+C:\Users\danil\Documents\GitHub\sneakers_db\DB_lab7\DB_lab7\obj\Debug\DB_lab7.Query2.resources
+C:\Users\danil\Documents\GitHub\sneakers_db\DB_lab7\DB_lab7\obj\Debug\DB_lab7.Query3.resources

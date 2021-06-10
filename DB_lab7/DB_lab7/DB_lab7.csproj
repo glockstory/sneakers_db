@@ -62,6 +62,24 @@
     <Compile Include="Exemplar.Designer.cs">
       <DependentUpon>Exemplar.cs</DependentUpon>
     </Compile>
+    <Compile Include="Query1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Query1.Designer.cs">
+      <DependentUpon>Query1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Query2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Query2.Designer.cs">
+      <DependentUpon>Query2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Query3.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Query3.Designer.cs">
+      <DependentUpon>Query3.cs</DependentUpon>
+    </Compile>
     <Compile Include="Sneakers.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -75,6 +93,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Exemplar.resx">
       <DependentUpon>Exemplar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Query1.resx">
+      <DependentUpon>Query1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Query2.resx">
+      <DependentUpon>Query2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Query3.resx">
+      <DependentUpon>Query3.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sneakers.resx">
       <DependentUpon>Sneakers.cs</DependentUpon>

@@ -35,5 +35,26 @@ namespace DB_lab7
         {
 
         }
+
+        private void query1_Click(object sender, EventArgs e)
+        {
+            Form toQ1 = new Query1();
+            toQ1.Owner = this;
+            toQ1.Show();
+        }
+
+        private void query2_Click(object sender, EventArgs e)
+        {
+            Form toQ2 = new Query2();
+            toQ2.Owner = this;
+            toQ2.Show();
+        }
+
+        private void selectPrice_Click(object sender, EventArgs e)
+        {
+            Form toForm = new Query3();
+            toForm.Owner = this;
+            toForm.Show();
+        }
     }
 }
