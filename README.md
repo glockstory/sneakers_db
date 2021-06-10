@@ -18,4 +18,5 @@
 [**Индексы, хранимые процедуры, представления**](https://github.com/glockstory/sneakers_db/blob/master/5lab.sql)
 ## 6-7 lab
 [**Взаимодействие с БД из приложения**](https://github.com/glockstory/sneakers_db/tree/master/DB_lab7)
-
+## Курсовая
+[**Ссылка на курсовую**](https://docviewer.yandex.ru/view/872714642/?*=WisO4RdYiVVxGLeCcL%2BFi%2BRwdJ57InVybCI6InlhLWJyb3dzZXI6Ly80RFQxdVhFUFJySlJYbFVGb2V3cnVCTE8tVzdBdW0tSVQ5cWZsYjBESmx0elJhTnVyeHp5djJkZ3hkWXFWMm5HRk45QjROZUJkNGZfcUhXdFJ2Y3A1QTZBdFpsZ3R4Z1pSNXJoZ01aRXFsVkJraXB0QllQTWp6aEJ3LUVUZmEyLTA3VVE3bjFWSGxVWHp4RDh2ZEZDWmc9PT9zaWduPVJVUHBEMW1RamZpanhrZGp1NDFodXFxMzhOQWtMUS1HT2JWOFozNkVCbDQ9IiwidGl0bGUiOiJOaWtvbGVua29fMV8xICgxKS5kb2N4Iiwibm9pZnJhbWUiOmZhbHNlLCJ1aWQiOiI4NzI3MTQ2NDIiLCJ0cyI6MTYyMzMxNjExNDIyNiwieXUiOiI1NjA3NDEyMTQxNjE4NjA0OTI3In0%3D)
